@@ -54,9 +54,9 @@ public class PeopleClient {
 		// final String MY_LOCAL_SERVER = "http://127.0.1.1:6902";
 
 		// My server that should be deployed on Heroku
-		// String MY_HEROKU_SERVER = "https://agile-shelf-1769.herokuapp.com";
-		// String BASE_URL = "/soap/people";
-		// String endpointUrl = MY_HEROKU_SERVER + BASE_URL;
+		//String MY_HEROKU_SERVER = "https://agile-shelf-1769.herokuapp.com";
+		//String BASE_URL = "/soap/people";
+		//String endpointUrl = MY_HEROKU_SERVER + BASE_URL + "?wsdl";
 
 		System.out.println("Starting People Service...");
 		System.out.println("**STEP 1**");
@@ -64,7 +64,7 @@ public class PeopleClient {
 				+ "\n[kill the process to exit]");
 
 		// 1st argument service URI, refer to wsdl document above
-		url = new URL(endpointUrl + "?wsdl");
+		url = new URL(endpointUrl);
 
 		// 2nd argument is service name, refer to wsdl document above
 		qname = new QName("http://soap.document.introsde/", "PeopleService");
@@ -396,8 +396,7 @@ public class PeopleClient {
 
 		// SOAP Envelope
 		SOAPEnvelope envelope = soapPart.getEnvelope();
-		envelope.addNamespaceDeclaration(ENVELOPE_NAMESPACE_TAG,
-				ENVELOPE_NAMESPACE);
+		//envelope.addNamespaceDeclaration(ENVELOPE_NAMESPACE_TAG,ENVELOPE_NAMESPACE);
 		envelope.setEncodingStyle(ENCODING_NAMESPACE);
 
 		// SOAP Body
