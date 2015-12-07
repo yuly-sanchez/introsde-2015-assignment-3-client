@@ -35,10 +35,10 @@ public class PeopleClient {
 
 	SOAPConnectionFactory soapConnectionFactory;
 	SOAPConnection soapConnection;
-	
+
 	SOAPMessage soapMessage = null;
 	SOAPBody soapBody = null;
-	
+
 	final String ENVELOPE_NAMESPACE = "http://schemas.xmlsoap.org/soap/envelope/";
 	final String ENVELOPE_NAMESPACE_TAG = "soap";
 	final String ENCODING_NAMESPACE = "http://www.w3.org/2001/12/soap-encoding";
@@ -51,7 +51,7 @@ public class PeopleClient {
 	Long first_personId;
 	Long last_personId;
 	String measure_type;
-	Long mid;
+	Long measureId;
 
 	public PeopleClient() throws Exception {
 		// My server local
@@ -89,48 +89,34 @@ public class PeopleClient {
 		try {
 
 			PeopleClient c = new PeopleClient();
+
 			c.request_1();
 			c.request_2();
 
-			SOAPMessage soapResponse3 = c.soapConnection.call(c.request_3(),c.url);
+			SOAPMessage soapResponse3 = c.soapConnection.call(c.request_3(),
+					c.url);
 			System.out.println("INBOUND MESSAGE\n");
 			System.out.println(getSOAPMessageAsString(soapResponse3));
-			
-			// templateRequest(4, "POST", mediaType);
-			// Person personToCreate = new Person();
-			// personToCreate.setBirthdate("1978-04-23");
-			// personToCreate.setFirstname("Andrea");
-			// personToCreate.setLastname("Llanos");
-			// Long personToCreateId = people.createPerson(personToCreate);
-			// System.out.println("Person id: " + personToCreateId);
+
+			SOAPMessage soapResponse4 = c.soapConnection.call(c.request_4(),
+					c.url);
+			System.out.println("INBOUND MESSAGE\n");
+			System.out.println(getSOAPMessageAsString(soapResponse4));
 
 			c.request_5();
-
-			templateRequest(6, "POST", mediaType);
-			HealthHistoryWrapper personHistoryList = people.readPersonHistory(
-					first_personId, measureType);
-			String measure_Type = personHistoryList.getMeasure().get(0)
-					.getMeasureType();
-			Long mid = personHistoryList.getMeasure().get(0).getMid();
-			System.out.println("Measure type: " + measure_Type);
-			System.out.println("Mid: " + mid);
-
 			c.request_7();
+			c.request_6();
 			c.request_8();
 
-			// templateRequest(9, "POST", mediaType);
-			// Measure measureToCreate = new Measure();
-			// measureToCreate.setMeasureType("weight");
-			// measureToCreate.setMeasureValue("45.7");
-			// measureToCreate.setMeasureValueType("Double");
-			// people.savePersonMeasure(first_personId, measureToCreate);
-
-			templateRequest(10, "PUT", mediaType);
-			Measure measureToUpdate = new Measure(); // personHistoryList.getMeasure().get(0);
-			measureToUpdate.setMeasureValue("45");
-			Holder<Long> idMeasure = new Holder<Long>(mid);
-			people.updatePersonMeasure(first_personId, measureToUpdate,
-					idMeasure);
+			SOAPMessage soapResponse9 = c.soapConnection.call(c.request_9(),
+					c.url);
+			System.out.println("INBOUND MESSAGE\n");
+			System.out.println(getSOAPMessageAsString(soapResponse9));
+			
+			SOAPMessage soapResponse10 = c.soapConnection.call(c.request_10(),
+					c.url);
+			System.out.println("INBOUND MESSAGE\n");
+			System.out.println(getSOAPMessageAsString(soapResponse10));
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -154,52 +140,104 @@ public class PeopleClient {
 	}
 
 	public SOAPMessage request_3() {
-		
-		SOAPElement updatePerson = null;
 		String method_3 = "updatePerson";
 		String arg0 = "person";
 		String arg1 = "personId";
 		String arg2 = "firstname";
 		String arg3 = "lastname";
-		try{
-			 updatePerson = soapBody.addChildElement(method_3, "m");
+		try {
+			createSOAPRequest();
+			SOAPElement updatePerson = soapBody.addChildElement(method_3,
+					BODY_NAMESPACE_TAG);
 
 			SOAPElement person = updatePerson.addChildElement(arg0);
 
 			SOAPElement personId = person.addChildElement(arg1);
-			personId.addTextNode("1");
-			
+			personId.addTextNode(String.valueOf(last_personId));
+
 			SOAPElement firstname = person.addChildElement(arg2);
 			firstname.addTextNode("Pallo");
-			
+
 			SOAPElement lastname = person.addChildElement(arg3);
 			lastname.addTextNode("Pinco");
 
 			person.addChildElement(personId);
 			person.addChildElement(firstname);
 			person.addChildElement(lastname);
-			
+
 			soapMessage.saveChanges();
 
 			/* Print the request message */
 			templateRequest(3, "PUT", mediaType);
 			System.out.println("OUTBOUND MESSAGE\n");
-			System.out.println();
 			System.out.println(getSOAPMessageAsString(soapMessage));
-			// soapMessage.writeTo(System.out);
+			System.out.println();
 
 			return soapMessage;
 
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			return null;
 		}
-		//This is the implementation of the updatePerson method with classes generated
+		// This is the implementation of the updatePerson method with classes
+		// generated
 		// templateRequest(3, "PUT", mediaType);
 		// Person personToUpdate = targetRequest2;
 		// personToUpdate.setFirstname("Chuck");
 		// personToUpdate.setLastname("Norris");
 		// people.updatePerson(personToUpdate);
+	}
+
+	public SOAPMessage request_4() {
+
+		SOAPElement createPerson = null;
+		String method_4 = "createPerson";
+		String arg0 = "person";
+		String arg1 = "firstname";
+		String arg2 = "lastname";
+		String arg3 = "birthdate";
+
+		try {
+			createSOAPRequest();
+			createPerson = soapBody.addChildElement(method_4,
+					BODY_NAMESPACE_TAG);
+
+			SOAPElement person = createPerson.addChildElement(arg0);
+
+			SOAPElement firstname = person.addChildElement(arg1);
+			firstname.addTextNode("Test");
+
+			SOAPElement lastname = person.addChildElement(arg2);
+			lastname.addTextNode("Prova");
+
+			SOAPElement birthdate = person.addChildElement(arg3);
+			birthdate.addTextNode("1999-02-03");
+
+			person.addChildElement(firstname);
+			person.addChildElement(lastname);
+			person.addChildElement(birthdate);
+
+			soapMessage.saveChanges();
+
+			/* Print the request message */
+			templateRequest(4, "POST", mediaType);
+			System.out.println("OUTBOUND MESSAGE\n");
+			System.out.println(getSOAPMessageAsString(soapMessage));
+			System.out.println();
+
+			return soapMessage;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		// templateRequest(4, "POST", mediaType);
+		// Person personToCreate = new Person();
+		// personToCreate.setBirthdate("1978-04-23");
+		// personToCreate.setFirstname("Andrea");
+		// personToCreate.setLastname("Llanos");
+		// Long personToCreateId = people.createPerson(personToCreate);
+		// System.out.println("Person id: " + personToCreateId);
 	}
 
 	public void request_5() {
@@ -214,11 +252,148 @@ public class PeopleClient {
 		System.out.println("Measure Type: " + measure_type);
 	}
 
-	public void request_8() {
-		templateRequest(8, "POST", mediaType);
-		people.readPersonMeasure(first_personId, measure_type, mid);
+	public void request_6() {
+		templateRequest(6, "POST", mediaType);
+		HealthHistoryWrapper personHistoryList = people.readPersonHistory(
+				first_personId, measure_type);
+		measureId = personHistoryList.getMeasure().get(0).getMid();
+		System.out.println("Mid: " + measureId);
 	}
 
+	public void request_8() {
+		templateRequest(8, "POST", mediaType);
+		people.readPersonMeasure(first_personId, measure_type, measureId);
+	}
+
+	public SOAPMessage request_9() {
+		/**
+		 * <m:savePersonMeasure>
+    <personId>1</personId>
+    <measure>
+        <measureType>height</measureType>
+        <measureValue>60</measureValue>
+        <measureValueType>Double</measureValueType>
+    </measure>
+  </m:savePersonMeasure>
+		 */
+		
+		SOAPElement savePersonMeasure = null;
+		String method_9 = "savePersonMeasure";
+		String arg0 = "personId";
+		String arg1 = "measure";
+		String arg2 = "measureType";
+		String arg3 = "measureValue";
+		String arg4 = "measureValueType";
+
+		try {
+			createSOAPRequest();
+			savePersonMeasure = soapBody.addChildElement(method_9,
+					BODY_NAMESPACE_TAG);
+
+			SOAPElement personId = savePersonMeasure.addChildElement(arg0);
+			personId.addTextNode(String.valueOf(first_personId));
+			
+			SOAPElement measure = savePersonMeasure.addChildElement(arg1);
+			
+			SOAPElement measureType = measure.addChildElement(arg2);
+			measureType.addTextNode(measure_type);
+
+			SOAPElement measureValue = measure.addChildElement(arg3);
+			measureValue.addTextNode("1.75");
+
+			SOAPElement measureValueType = measure.addChildElement(arg4);
+			measureValueType.addTextNode("Double");
+
+			soapMessage.saveChanges();
+
+			/* Print the request message */
+			templateRequest(9, "POST", mediaType);
+			System.out.println("OUTBOUND MESSAGE\n");
+			System.out.println(getSOAPMessageAsString(soapMessage));
+			System.out.println();
+
+			return soapMessage;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		// templateRequest(9, "POST", mediaType);
+		// Measure measureToCreate = new Measure();
+		// measureToCreate.setMeasureType("weight");
+		// measureToCreate.setMeasureValue("45.7");
+		// measureToCreate.setMeasureValueType("Double");
+		// people.savePersonMeasure(first_personId, measureToCreate);
+
+	}
+
+	public SOAPMessage request_10(){
+		/**
+		 * <m:updatePersonMeasure>
+    <personId>1</personId>
+    <measure>
+        <measureType>height</measureType>
+        <measureValue>45.6</measureValue>
+        <measureValueType>Double</measureValueType>
+    </measure>
+    <mid>634</mid>
+  </m:updatePersonMeasure>
+		 */
+		
+		SOAPElement updatePersonMeasure = null;
+		String method_10 = "updatePersonMeasure";
+		String arg0 = "personId";
+		String arg1 = "measure";
+		String arg2 = "measureType";
+		String arg3 = "measureValue";
+		String arg4 = "measureValueType";
+		String arg5 = "mid";
+
+		try {
+			createSOAPRequest();
+			updatePersonMeasure = soapBody.addChildElement(method_10,
+					BODY_NAMESPACE_TAG);
+
+			SOAPElement personId = updatePersonMeasure.addChildElement(arg0);
+			personId.addTextNode(String.valueOf(first_personId));
+			
+			SOAPElement measure = updatePersonMeasure.addChildElement(arg1);
+			
+			SOAPElement measureType = measure.addChildElement(arg2);
+			measureType.addTextNode(measure_type);
+
+			SOAPElement measureValue = measure.addChildElement(arg3);
+			measureValue.addTextNode("1.47");
+
+			SOAPElement measureValueType = measure.addChildElement(arg4);
+			measureValueType.addTextNode("Double");
+			
+			SOAPElement mid = updatePersonMeasure.addChildElement(arg5);
+			mid.addTextNode(String.valueOf(measureId));
+			
+			soapMessage.saveChanges();
+
+			/* Print the request message */
+			templateRequest(10, "PUT", mediaType);
+			System.out.println("OUTBOUND MESSAGE\n");
+			System.out.println(getSOAPMessageAsString(soapMessage));
+			System.out.println();
+
+			return soapMessage;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		
+		//templateRequest(10, "PUT", mediaType);
+		//Measure measureToUpdate = new Measure(); // personHistoryList.getMeasure().get(0);
+		//measureToUpdate.setMeasureValue("45");
+		//Holder<Measure> measureH = new Holder<Measure>(measureToUpdate);
+		//people.updatePersonMeasure(first_personId, measureToUpdate,mid);
+
+	}
+	
 	public void createSOAPRequest() throws Exception {
 		// Create message
 		MessageFactory messageFactory = MessageFactory.newInstance();
@@ -232,7 +407,7 @@ public class PeopleClient {
 		envelope.setEncodingStyle(ENCODING_NAMESPACE);
 
 		// SOAP Body
-		SOAPBody soapBody = envelope.getBody();
+		soapBody = envelope.getBody();
 		soapBody.addNamespaceDeclaration(BODY_NAMESPACE_TAG, BODY_NAMESPACE);
 	}
 
@@ -263,7 +438,7 @@ public class PeopleClient {
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * @param numberRequest
