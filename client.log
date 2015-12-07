@@ -1,0 +1,485 @@
+     [echo] ant 'start-client' target has been called
+     [java] Starting People Service...
+     [java] **STEP 1**
+     [java] WSDL url https://agile-shelf-1769.herokuapp.com/soap/people?wsdl
+     [java] [kill the process to exit]
+     [java] **STEP 2*
+     [java] ======================================================================================================
+     [java] Method #1: POST Accept: TEXT/XML Content-Type: TEXT/XML
+     [java] 
+     [java] OUTBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:readPersonList xmlns:ns2="http://soap.document.introsde/"/>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] INBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:readPersonListResponse xmlns:ns2="http://soap.document.introsde/">
+     [java]       <people>
+     [java]         <person>
+     [java]           <personId>1</personId>
+     [java]           <firstname>Stefano</firstname>
+     [java]           <lastname>Pernat</lastname>
+     [java]           <birthdate>1989-07-02</birthdate>
+     [java]           <currentHealth>
+     [java]             <measure>
+     [java]               <mid>1</mid>
+     [java]               <dateRegistered>2014-08-10</dateRegistered>
+     [java]               <measureType>weight</measureType>
+     [java]               <measureValue>62.5</measureValue>
+     [java]               <measureValueType>Double</measureValueType>
+     [java]             </measure>
+     [java]             <measure>
+     [java]               <mid>3</mid>
+     [java]               <dateRegistered>2014-11-10</dateRegistered>
+     [java]               <measureType>steps</measureType>
+     [java]               <measureValue>3000</measureValue>
+     [java]               <measureValueType>Integer</measureValueType>
+     [java]             </measure>
+     [java]             <measure>
+     [java]               <mid>21</mid>
+     [java]               <dateRegistered>2015-12-07</dateRegistered>
+     [java]               <measureType>height</measureType>
+     [java]               <measureValue>1.47</measureValue>
+     [java]               <measureValueType>Integer</measureValueType>
+     [java]             </measure>
+     [java]           </currentHealth>
+     [java]         </person>
+     [java]         <person>
+     [java]           <personId>2</personId>
+     [java]           <firstname>Antonio</firstname>
+     [java]           <lastname>Pallino</lastname>
+     [java]           <birthdate>1979-03-01</birthdate>
+     [java]           <currentHealth>
+     [java]             <measure>
+     [java]               <mid>4</mid>
+     [java]               <dateRegistered>2014-02-25</dateRegistered>
+     [java]               <measureType>weight</measureType>
+     [java]               <measureValue>85.5</measureValue>
+     [java]               <measureValueType>Double</measureValueType>
+     [java]             </measure>
+     [java]             <measure>
+     [java]               <mid>5</mid>
+     [java]               <dateRegistered>2014-06-11</dateRegistered>
+     [java]               <measureType>height</measureType>
+     [java]               <measureValue>180</measureValue>
+     [java]               <measureValueType>Integer</measureValueType>
+     [java]             </measure>
+     [java]             <measure>
+     [java]               <mid>6</mid>
+     [java]               <dateRegistered>2014-09-01</dateRegistered>
+     [java]               <measureType>steps</measureType>
+     [java]               <measureValue>10000</measureValue>
+     [java]               <measureValueType>Integer</measureValueType>
+     [java]             </measure>
+     [java]           </currentHealth>
+     [java]         </person>
+     [java]         <person>
+     [java]           <personId>3</personId>
+     [java]           <firstname>Marco</firstname>
+     [java]           <lastname>Pedrazzi</lastname>
+     [java]           <birthdate>1989-12-13</birthdate>
+     [java]           <currentHealth>
+     [java]             <measure>
+     [java]               <mid>7</mid>
+     [java]               <dateRegistered>2014-05-31</dateRegistered>
+     [java]               <measureType>weight</measureType>
+     [java]               <measureValue>75.7</measureValue>
+     [java]               <measureValueType>Double</measureValueType>
+     [java]             </measure>
+     [java]             <measure>
+     [java]               <mid>8</mid>
+     [java]               <dateRegistered>2014-07-05</dateRegistered>
+     [java]               <measureType>height</measureType>
+     [java]               <measureValue>178</measureValue>
+     [java]               <measureValueType>Integer</measureValueType>
+     [java]             </measure>
+     [java]             <measure>
+     [java]               <mid>9</mid>
+     [java]               <dateRegistered>2014-03-07</dateRegistered>
+     [java]               <measureType>steps</measureType>
+     [java]               <measureValue>5500</measureValue>
+     [java]               <measureValueType>Integer</measureValueType>
+     [java]             </measure>
+     [java]           </currentHealth>
+     [java]         </person>
+     [java]         <person>
+     [java]           <personId>4</personId>
+     [java]           <firstname>Anthony</firstname>
+     [java]           <lastname>Sanchez</lastname>
+     [java]           <birthdate>1985-09-09</birthdate>
+     [java]           <currentHealth>
+     [java]             <measure>
+     [java]               <mid>11</mid>
+     [java]               <dateRegistered>2014-06-18</dateRegistered>
+     [java]               <measureType>height</measureType>
+     [java]               <measureValue>174</measureValue>
+     [java]               <measureValueType>Integer</measureValueType>
+     [java]             </measure>
+     [java]             <measure>
+     [java]               <mid>12</mid>
+     [java]               <dateRegistered>2014-11-22</dateRegistered>
+     [java]               <measureType>steps</measureType>
+     [java]               <measureValue>20700</measureValue>
+     [java]               <measureValueType>Integer</measureValueType>
+     [java]             </measure>
+     [java]             <measure>
+     [java]               <mid>284</mid>
+     [java]               <dateRegistered>2015-12-05</dateRegistered>
+     [java]               <measureType>weight</measureType>
+     [java]               <measureValue>78</measureValue>
+     [java]               <measureValueType>Double</measureValueType>
+     [java]             </measure>
+     [java]           </currentHealth>
+     [java]         </person>
+     [java]         <person>
+     [java]           <personId>257</personId>
+     [java]           <firstname>Test</firstname>
+     [java]           <lastname>Prova</lastname>
+     [java]           <birthdate>1999-02-03</birthdate>
+     [java]           <currentHealth/>
+     [java]         </person>
+     [java]       </people>
+     [java]     </ns2:readPersonListResponse>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] First personId: 1
+     [java] Last personId: 257
+     [java] ======================================================================================================
+     [java] Method #2: POST Accept: TEXT/XML Content-Type: TEXT/XML
+     [java] 
+     [java] OUTBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:readPerson xmlns:ns2="http://soap.document.introsde/">
+     [java]       <personId>1</personId>
+     [java]     </ns2:readPerson>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] INBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:readPersonResponse xmlns:ns2="http://soap.document.introsde/">
+     [java]       <person>
+     [java]         <personId>1</personId>
+     [java]         <firstname>Stefano</firstname>
+     [java]         <lastname>Pernat</lastname>
+     [java]         <birthdate>1989-07-02</birthdate>
+     [java]         <currentHealth>
+     [java]           <measure>
+     [java]             <mid>1</mid>
+     [java]             <dateRegistered>2014-08-10</dateRegistered>
+     [java]             <measureType>weight</measureType>
+     [java]             <measureValue>62.5</measureValue>
+     [java]             <measureValueType>Double</measureValueType>
+     [java]           </measure>
+     [java]           <measure>
+     [java]             <mid>3</mid>
+     [java]             <dateRegistered>2014-11-10</dateRegistered>
+     [java]             <measureType>steps</measureType>
+     [java]             <measureValue>3000</measureValue>
+     [java]             <measureValueType>Integer</measureValueType>
+     [java]           </measure>
+     [java]           <measure>
+     [java]             <mid>21</mid>
+     [java]             <dateRegistered>2015-12-07</dateRegistered>
+     [java]             <measureType>height</measureType>
+     [java]             <measureValue>1.47</measureValue>
+     [java]             <measureValueType>Integer</measureValueType>
+     [java]           </measure>
+     [java]         </currentHealth>
+     [java]       </person>
+     [java]     </ns2:readPersonResponse>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] ======================================================================================================
+     [java] Method #3: PUT Accept: TEXT/XML Content-Type: TEXT/XML
+     [java] 
+     [java] OUTBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" SOAP-ENV:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <SOAP-ENV:Body xmlns:m="http://soap.document.introsde/">
+     [java]     <m:updatePerson>
+     [java]       <person>
+     [java]         <personId>257</personId>
+     [java]         <firstname>Pallo</firstname>
+     [java]         <lastname>Pinco</lastname>
+     [java]       </person>
+     [java]     </m:updatePerson>
+     [java]   </SOAP-ENV:Body>
+     [java] </SOAP-ENV:Envelope>
+     [java] 
+     [java] 
+     [java] INBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8"?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <S:Body>
+     [java]     <ns2:updatePersonResponse xmlns:ns2="http://soap.document.introsde/">
+     [java]       <personId>257</personId>
+     [java]     </ns2:updatePersonResponse>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] ======================================================================================================
+     [java] Method #4: POST Accept: TEXT/XML Content-Type: TEXT/XML
+     [java] 
+     [java] OUTBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" SOAP-ENV:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <SOAP-ENV:Body xmlns:m="http://soap.document.introsde/">
+     [java]     <m:createPerson>
+     [java]       <person>
+     [java]         <firstname>Test</firstname>
+     [java]         <lastname>Prova</lastname>
+     [java]         <birthdate>1999-02-03</birthdate>
+     [java]       </person>
+     [java]     </m:createPerson>
+     [java]   </SOAP-ENV:Body>
+     [java] </SOAP-ENV:Envelope>
+     [java] 
+     [java] 
+     [java] INBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8"?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <S:Body>
+     [java]     <ns2:createPersonResponse xmlns:ns2="http://soap.document.introsde/">
+     [java]       <personId>258</personId>
+     [java]     </ns2:createPersonResponse>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] ======================================================================================================
+     [java] Method #5: DELETE Accept: TEXT/XML Content-Type: TEXT/XML
+     [java] 
+     [java] OUTBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:deletePerson xmlns:ns2="http://soap.document.introsde/">
+     [java]       <personId>257</personId>
+     [java]     </ns2:deletePerson>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] INBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:deletePersonResponse xmlns:ns2="http://soap.document.introsde/">
+     [java]       <message>Person with id: 257 deleted</message>
+     [java]     </ns2:deletePersonResponse>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] ======================================================================================================
+     [java] Method #7: POST Accept: TEXT/XML Content-Type: TEXT/XML
+     [java] 
+     [java] OUTBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:readMeasureTypes xmlns:ns2="http://soap.document.introsde/"/>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] INBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:readMeasureTypesResponse xmlns:ns2="http://soap.document.introsde/">
+     [java]       <measureType>
+     [java]         <measureType>height</measureType>
+     [java]         <measureType>steps</measureType>
+     [java]         <measureType>weight</measureType>
+     [java]       </measureType>
+     [java]     </ns2:readMeasureTypesResponse>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] Measure Type: height
+     [java] ======================================================================================================
+     [java] Method #6: POST Accept: TEXT/XML Content-Type: TEXT/XML
+     [java] 
+     [java] OUTBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:readPersonHistory xmlns:ns2="http://soap.document.introsde/">
+     [java]       <personId>1</personId>
+     [java]       <measureType>height</measureType>
+     [java]     </ns2:readPersonHistory>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] INBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:readPersonHistoryResponse xmlns:ns2="http://soap.document.introsde/">
+     [java]       <healthProfile-history>
+     [java]         <measure>
+     [java]           <mid>2</mid>
+     [java]           <dateRegistered>2015-12-07</dateRegistered>
+     [java]           <measureType>height</measureType>
+     [java]           <measureValue>1.47</measureValue>
+     [java]           <measureValueType>Integer</measureValueType>
+     [java]         </measure>
+     [java]         <measure>
+     [java]           <mid>534</mid>
+     [java]           <dateRegistered>2015-12-07</dateRegistered>
+     [java]           <measureType>height</measureType>
+     [java]           <measureValue>1.75</measureValue>
+     [java]           <measureValueType>Double</measureValueType>
+     [java]         </measure>
+     [java]         <measure>
+     [java]           <mid>535</mid>
+     [java]           <dateRegistered>2015-12-07</dateRegistered>
+     [java]           <measureType>height</measureType>
+     [java]           <measureValue>1.75</measureValue>
+     [java]           <measureValueType>Double</measureValueType>
+     [java]         </measure>
+     [java]         <measure>
+     [java]           <mid>536</mid>
+     [java]           <dateRegistered>2015-12-07</dateRegistered>
+     [java]           <measureType>height</measureType>
+     [java]           <measureValue>1.75</measureValue>
+     [java]           <measureValueType>Double</measureValueType>
+     [java]         </measure>
+     [java]       </healthProfile-history>
+     [java]     </ns2:readPersonHistoryResponse>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] Mid: 2
+     [java] ======================================================================================================
+     [java] Method #8: POST Accept: TEXT/XML Content-Type: TEXT/XML
+     [java] 
+     [java] OUTBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:readPersonMeasure xmlns:ns2="http://soap.document.introsde/">
+     [java]       <personId>1</personId>
+     [java]       <measureType>height</measureType>
+     [java]       <mid>2</mid>
+     [java]     </ns2:readPersonMeasure>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] INBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <S:Body>
+     [java]     <ns2:readPersonMeasureResponse xmlns:ns2="http://soap.document.introsde/">
+     [java]       <measure>1.47</measure>
+     [java]     </ns2:readPersonMeasureResponse>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] ======================================================================================================
+     [java] Method #9: POST Accept: TEXT/XML Content-Type: TEXT/XML
+     [java] 
+     [java] OUTBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" SOAP-ENV:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <SOAP-ENV:Body xmlns:m="http://soap.document.introsde/">
+     [java]     <m:savePersonMeasure>
+     [java]       <personId>1</personId>
+     [java]       <measure>
+     [java]         <measureType>height</measureType>
+     [java]         <measureValue>1.75</measureValue>
+     [java]         <measureValueType>Double</measureValueType>
+     [java]       </measure>
+     [java]     </m:savePersonMeasure>
+     [java]   </SOAP-ENV:Body>
+     [java] </SOAP-ENV:Envelope>
+     [java] 
+     [java] 
+     [java] INBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8"?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <S:Body>
+     [java]     <ns2:savePersonMeasureResponse xmlns:ns2="http://soap.document.introsde/">
+     [java]       <measure>537</measure>
+     [java]     </ns2:savePersonMeasureResponse>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
+     [java] ======================================================================================================
+     [java] Method #10: PUT Accept: TEXT/XML Content-Type: TEXT/XML
+     [java] 
+     [java] OUTBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+     [java] <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" SOAP-ENV:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
+     [java]   <SOAP-ENV:Header/>
+     [java]   <SOAP-ENV:Body xmlns:m="http://soap.document.introsde/">
+     [java]     <m:updatePersonMeasure>
+     [java]       <personId>1</personId>
+     [java]       <measure>
+     [java]         <measureType>height</measureType>
+     [java]         <measureValue>1.47</measureValue>
+     [java]         <measureValueType>Double</measureValueType>
+     [java]       </measure>
+     [java]       <mid>2</mid>
+     [java]     </m:updatePersonMeasure>
+     [java]   </SOAP-ENV:Body>
+     [java] </SOAP-ENV:Envelope>
+     [java] 
+     [java] 
+     [java] INBOUND MESSAGE
+     [java] 
+     [java] <?xml version="1.0" encoding="UTF-8"?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+     [java]   <S:Body>
+     [java]     <ns2:updatePersonMeasureResponse xmlns:ns2="http://soap.document.introsde/">
+     [java]       <measure>
+     [java]         <mid>2</mid>
+     [java]         <dateRegistered>2015-12-07</dateRegistered>
+     [java]         <measureType>height</measureType>
+     [java]         <measureValue>1.47</measureValue>
+     [java]         <measureValueType>Integer</measureValueType>
+     [java]       </measure>
+     [java]     </ns2:updatePersonMeasureResponse>
+     [java]   </S:Body>
+     [java] </S:Envelope>
+     [java] 
