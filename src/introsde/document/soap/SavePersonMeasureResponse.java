@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="mid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="measure" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "savePersonMeasureResponse", propOrder = {
-    "mid"
+    "measure"
 })
 public class SavePersonMeasureResponse {
 
-    protected Long mid;
+    protected Long measure;
 
     /**
-     * Recupera il valore della proprietà mid.
+     * Recupera il valore della proprietà measure.
      * 
      * @return
      *     possible object is
      *     {@link Long }
      *     
      */
-    public Long getMid() {
-        return mid;
+    public Long getMeasure() {
+        return measure;
     }
 
     /**
-     * Imposta il valore della proprietà mid.
+     * Imposta il valore della proprietà measure.
      * 
      * @param value
      *     allowed object is
      *     {@link Long }
      *     
      */
-    public void setMid(Long value) {
-        this.mid = value;
+    public void setMeasure(Long value) {
+        this.measure = value;
     }
 
 }

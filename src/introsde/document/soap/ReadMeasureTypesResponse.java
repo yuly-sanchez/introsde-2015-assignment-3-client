@@ -3,7 +3,6 @@ package introsde.document.soap;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -17,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://soap.document.introsde/}measureTypes" minOccurs="0"/>
+ *         &lt;element name="measureType" type="{http://soap.document.introsde/}measureTypesWrapper" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "readMeasureTypesResponse", propOrder = {
-    "measureTypes"
+    "measureType"
 })
 public class ReadMeasureTypesResponse {
 
-    @XmlElement(namespace = "http://soap.document.introsde/")
-    protected MeasureTypesWrapper measureTypes;
+    protected MeasureTypesWrapper measureType;
 
     /**
-     * Recupera il valore della proprietà measureTypes.
+     * Recupera il valore della proprietà measureType.
      * 
      * @return
      *     possible object is
      *     {@link MeasureTypesWrapper }
      *     
      */
-    public MeasureTypesWrapper getMeasureTypes() {
-        return measureTypes;
+    public MeasureTypesWrapper getMeasureType() {
+        return measureType;
     }
 
     /**
-     * Imposta il valore della proprietà measureTypes.
+     * Imposta il valore della proprietà measureType.
      * 
      * @param value
      *     allowed object is
      *     {@link MeasureTypesWrapper }
      *     
      */
-    public void setMeasureTypes(MeasureTypesWrapper value) {
-        this.measureTypes = value;
+    public void setMeasureType(MeasureTypesWrapper value) {
+        this.measureType = value;
     }
 
 }

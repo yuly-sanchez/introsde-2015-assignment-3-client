@@ -3,6 +3,7 @@ package introsde.document.soap;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="mid" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element ref="{http://soap.document.introsde/}measure" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "updatePersonMeasureResponse", propOrder = {
-    "mid"
+    "measure"
 })
 public class UpdatePersonMeasureResponse {
 
-    protected Long mid;
+    @XmlElement(namespace = "http://soap.document.introsde/")
+    protected Measure measure;
 
     /**
-     * Recupera il valore della proprietà mid.
+     * Recupera il valore della proprietà measure.
      * 
      * @return
      *     possible object is
-     *     {@link Long }
+     *     {@link Measure }
      *     
      */
-    public Long getMid() {
-        return mid;
+    public Measure getMeasure() {
+        return measure;
     }
 
     /**
-     * Imposta il valore della proprietà mid.
+     * Imposta il valore della proprietà measure.
      * 
      * @param value
      *     allowed object is
-     *     {@link Long }
+     *     {@link Measure }
      *     
      */
-    public void setMid(Long value) {
-        this.mid = value;
+    public void setMeasure(Measure value) {
+        this.measure = value;
     }
 
 }
