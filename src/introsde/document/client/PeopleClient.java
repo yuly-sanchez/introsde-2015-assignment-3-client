@@ -1,14 +1,11 @@
 package introsde.document.client;
 
 import introsde.document.soap.*;
-import introsde.document.soap.Person.CurrentHealth;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
-import java.util.List;
-import java.util.UUID;
 
 import javax.xml.namespace.QName;
 import javax.xml.soap.MessageFactory;
@@ -24,7 +21,6 @@ import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.ws.Holder;
 import javax.xml.ws.Service;
 
 public class PeopleClient {
@@ -53,17 +49,18 @@ public class PeopleClient {
 	String measure_type;
 	Long measureId;
 
-	public PeopleClient() throws Exception {
+	public PeopleClient(String endpointUrl) throws Exception {
 		// My server local
 		// final String MY_LOCAL_SERVER = "http://127.0.1.1:6902";
 
 		// My server that should be deployed on Heroku
-		String MY_HEROKU_SERVER = "https://agile-shelf-1769.herokuapp.com";
-		String BASE_URL = "/soap/people";
-		String endpointUrl = MY_HEROKU_SERVER + BASE_URL;
+		// String MY_HEROKU_SERVER = "https://agile-shelf-1769.herokuapp.com";
+		// String BASE_URL = "/soap/people";
+		// String endpointUrl = MY_HEROKU_SERVER + BASE_URL;
 
 		System.out.println("Starting People Service...");
-		System.out.println("Published on " + endpointUrl + "?wsdl"
+		System.out.println("**STEP 1**");
+		System.out.println("WSDL url " + endpointUrl
 				+ "\n[kill the process to exit]");
 
 		// 1st argument service URI, refer to wsdl document above
@@ -85,41 +82,46 @@ public class PeopleClient {
 	}
 
 	public static void main(String[] args) throws Exception {
+		if (args.length < 1)
+			System.out.println("Error: insert server url");
+		
+		else {
 
-		try {
+			try {
 
-			PeopleClient c = new PeopleClient();
+				PeopleClient c = new PeopleClient(args[0]);
+				System.out.println("**STEP 2*");
+				c.request_1();
+				c.request_2();
 
-			c.request_1();
-			c.request_2();
+				SOAPMessage soapResponse3 = c.soapConnection.call(
+						c.request_3(), c.url);
+				System.out.println("INBOUND MESSAGE\n");
+				System.out.println(getSOAPMessageAsString(soapResponse3));
 
-			SOAPMessage soapResponse3 = c.soapConnection.call(c.request_3(),
-					c.url);
-			System.out.println("INBOUND MESSAGE\n");
-			System.out.println(getSOAPMessageAsString(soapResponse3));
+				SOAPMessage soapResponse4 = c.soapConnection.call(
+						c.request_4(), c.url);
+				System.out.println("INBOUND MESSAGE\n");
+				System.out.println(getSOAPMessageAsString(soapResponse4));
 
-			SOAPMessage soapResponse4 = c.soapConnection.call(c.request_4(),
-					c.url);
-			System.out.println("INBOUND MESSAGE\n");
-			System.out.println(getSOAPMessageAsString(soapResponse4));
+				c.request_5();
+				c.request_7();
+				c.request_6();
+				c.request_8();
 
-			c.request_5();
-			c.request_7();
-			c.request_6();
-			c.request_8();
+				SOAPMessage soapResponse9 = c.soapConnection.call(
+						c.request_9(), c.url);
+				System.out.println("INBOUND MESSAGE\n");
+				System.out.println(getSOAPMessageAsString(soapResponse9));
 
-			SOAPMessage soapResponse9 = c.soapConnection.call(c.request_9(),
-					c.url);
-			System.out.println("INBOUND MESSAGE\n");
-			System.out.println(getSOAPMessageAsString(soapResponse9));
-			
-			SOAPMessage soapResponse10 = c.soapConnection.call(c.request_10(),
-					c.url);
-			System.out.println("INBOUND MESSAGE\n");
-			System.out.println(getSOAPMessageAsString(soapResponse10));
+				SOAPMessage soapResponse10 = c.soapConnection.call(
+						c.request_10(), c.url);
+				System.out.println("INBOUND MESSAGE\n");
+				System.out.println(getSOAPMessageAsString(soapResponse10));
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 
@@ -267,16 +269,12 @@ public class PeopleClient {
 
 	public SOAPMessage request_9() {
 		/**
-		 * <m:savePersonMeasure>
-    <personId>1</personId>
-    <measure>
-        <measureType>height</measureType>
-        <measureValue>60</measureValue>
-        <measureValueType>Double</measureValueType>
-    </measure>
-  </m:savePersonMeasure>
+		 * <m:savePersonMeasure> <personId>1</personId> <measure>
+		 * <measureType>height</measureType> <measureValue>60</measureValue>
+		 * <measureValueType>Double</measureValueType> </measure>
+		 * </m:savePersonMeasure>
 		 */
-		
+
 		SOAPElement savePersonMeasure = null;
 		String method_9 = "savePersonMeasure";
 		String arg0 = "personId";
@@ -292,9 +290,9 @@ public class PeopleClient {
 
 			SOAPElement personId = savePersonMeasure.addChildElement(arg0);
 			personId.addTextNode(String.valueOf(first_personId));
-			
+
 			SOAPElement measure = savePersonMeasure.addChildElement(arg1);
-			
+
 			SOAPElement measureType = measure.addChildElement(arg2);
 			measureType.addTextNode(measure_type);
 
@@ -327,19 +325,14 @@ public class PeopleClient {
 
 	}
 
-	public SOAPMessage request_10(){
+	public SOAPMessage request_10() {
 		/**
-		 * <m:updatePersonMeasure>
-    <personId>1</personId>
-    <measure>
-        <measureType>height</measureType>
-        <measureValue>45.6</measureValue>
-        <measureValueType>Double</measureValueType>
-    </measure>
-    <mid>634</mid>
-  </m:updatePersonMeasure>
+		 * <m:updatePersonMeasure> <personId>1</personId> <measure>
+		 * <measureType>height</measureType> <measureValue>45.6</measureValue>
+		 * <measureValueType>Double</measureValueType> </measure> <mid>634</mid>
+		 * </m:updatePersonMeasure>
 		 */
-		
+
 		SOAPElement updatePersonMeasure = null;
 		String method_10 = "updatePersonMeasure";
 		String arg0 = "personId";
@@ -356,9 +349,9 @@ public class PeopleClient {
 
 			SOAPElement personId = updatePersonMeasure.addChildElement(arg0);
 			personId.addTextNode(String.valueOf(first_personId));
-			
+
 			SOAPElement measure = updatePersonMeasure.addChildElement(arg1);
-			
+
 			SOAPElement measureType = measure.addChildElement(arg2);
 			measureType.addTextNode(measure_type);
 
@@ -367,10 +360,10 @@ public class PeopleClient {
 
 			SOAPElement measureValueType = measure.addChildElement(arg4);
 			measureValueType.addTextNode("Double");
-			
+
 			SOAPElement mid = updatePersonMeasure.addChildElement(arg5);
 			mid.addTextNode(String.valueOf(measureId));
-			
+
 			soapMessage.saveChanges();
 
 			/* Print the request message */
@@ -385,15 +378,16 @@ public class PeopleClient {
 			ex.printStackTrace();
 			return null;
 		}
-		
-		//templateRequest(10, "PUT", mediaType);
-		//Measure measureToUpdate = new Measure(); // personHistoryList.getMeasure().get(0);
-		//measureToUpdate.setMeasureValue("45");
-		//Holder<Measure> measureH = new Holder<Measure>(measureToUpdate);
-		//people.updatePersonMeasure(first_personId, measureToUpdate,mid);
+
+		// templateRequest(10, "PUT", mediaType);
+		// Measure measureToUpdate = new Measure(); //
+		// personHistoryList.getMeasure().get(0);
+		// measureToUpdate.setMeasureValue("45");
+		// Holder<Measure> measureH = new Holder<Measure>(measureToUpdate);
+		// people.updatePersonMeasure(first_personId, measureToUpdate,mid);
 
 	}
-	
+
 	public void createSOAPRequest() throws Exception {
 		// Create message
 		MessageFactory messageFactory = MessageFactory.newInstance();
